@@ -3,7 +3,7 @@ import { POPULAR_BASE_URL } from '../../config';
 
 export const useHomeFetch = searchTerm => {
   const [state, setState] = useState({ movies: [] });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const fetchMovies = async endpoint => {
@@ -22,15 +22,14 @@ export const useHomeFetch = searchTerm => {
             : [...result.results],
         heroImage: prev.heroImage || result.results[0],
         currentPage: result.page,
-        totalPages: result.total_pages
-      }))
-
+        totalPages: result.total_pages,
+      }));
     } catch (error) {
       setError(true);
       console.log(error);
     }
     setLoading(false);
-  }
+  };
 
   // Fetch popular movies initially on mount
   useEffect(() => {
@@ -40,13 +39,13 @@ export const useHomeFetch = searchTerm => {
     } else {
       fetchMovies(POPULAR_BASE_URL);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (!searchTerm) {
       sessionStorage.setItem('homeState', JSON.stringify(state));
     }
-  }, [searchTerm, state])
+  }, [searchTerm, state]);
 
-  return [{ state, loading, error}, fetchMovies];
-}
+  return [{ state, loading, error }, fetchMovies];
+};
