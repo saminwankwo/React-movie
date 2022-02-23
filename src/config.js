@@ -4,7 +4,7 @@
 
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '2faf3631a6fa14914342240452cbdeda';
-const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/';
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
 
 const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&query=`;
 const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
